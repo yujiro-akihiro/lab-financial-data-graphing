@@ -43,6 +43,38 @@ axios.get(apiUrl)
             }
         });
 
+        // creating graph
+        const xxx = document.getElementById('yourChart').getContext('2d');
+
+        new Chart(xxx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Bitcoin Price Index (USD)',
+                    data: data,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Date'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Price (USD)'
+                        }
+                    }
+                }
+            }
+        });
+
 
 
     })
