@@ -1,27 +1,35 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
 
-<!-- グラフを描画するためのキャンバス要素 -->
+<!-- Form to select date range and currency -->
+<div class="filter-form">
+  <label for="startDate">Start Date:</label>
+  <input type="date" id="startDate" name="startDate" />
+
+  <label for="endDate">End Date:</label>
+  <input type="date" id="endDate" name="endDate" />
+
+  <label for="currency">Currency:</label>
+  <select id="currency">
+    <option value="USD">USD</option>
+    <option value="EUR">EUR</option>
+  </select>
+
+  <!-- Information message about data availability -->
+  <p class="info-message">
+    * Only data within the past 1 month is available in USD.
+  </p>
+</div>
+
+<!-- Canvas element for rendering the chart -->
 <p class="center-text">
-<canvas id="myChart" width="400" height="200"></canvas>
-</p>
-<p class="center-text">
-<canvas id="yourChart" width="400" height="200"></canvas>
-</p>
-<p class="center-text">
-<canvas id="hisChart" width="400" height="200"></canvas>
-</p>
-<p class="center-text">
-<canvas id="herChart" width="400" height="200"></canvas>
+  <canvas id="myChart" width="400" height="200"></canvas>
 </p>
 
 <!-- Required attribution to CoinDesk as per their API usage guidelines -->
 <p class="center-text">
   <small>
     Data provided by
-    <a
-      href="https://www.coindesk.com/price/bitcoin"
-      target="_blank"
-    >CoinDesk</a>. Powered by CoinDesk.
+    <a href="https://www.coindesk.com/price/bitcoin" target="_blank">CoinDesk</a>. Powered by CoinDesk.
   </small>
 </p>

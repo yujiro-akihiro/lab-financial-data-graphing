@@ -4,18 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    
+    <!-- Title of the page, dynamically set -->
     <title>{{title}}</title>
+
+    <!-- Link to the stylesheet for page styling -->
     <link rel="stylesheet" href="/stylesheets/style.css" />
+
+    <!-- Include Axios for making HTTP requests via CDN -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  {{!-- Link to Chart.js CDN for rendering charts --}}
+
+    <!-- Include Chart.js for rendering charts via CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
 
   <body>
 
+    <!-- The main content of the page will be injected here -->
     {{{body}}}
 
+    <!-- Link to the custom script for general page functionality -->
     <script src="/js/script.js"></script>
+
+    <!-- Link to the script for handling financial data and chart rendering -->
     <script src="/js/financial-data.js" charset="utf-8"></script>
   </body>
 
