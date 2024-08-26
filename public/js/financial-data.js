@@ -11,7 +11,7 @@ axios.get(apiUrl)
         const labels = Object.keys(response.data.bpi); // array of data
         const data = Object.values(response.data.bpi); // array of value
 
-        // creating graph
+        // creating line graph
         const ctx = document.getElementById('myChart').getContext('2d');
 
         new Chart(ctx, {
@@ -43,7 +43,7 @@ axios.get(apiUrl)
             }
         });
 
-        // creating graph
+        // creating bar graph
         const xxx = document.getElementById('yourChart').getContext('2d');
 
         new Chart(xxx, {
@@ -75,6 +75,70 @@ axios.get(apiUrl)
             }
         });
 
+
+        // creating doughnut graph
+        const yyy = document.getElementById('hisChart').getContext('2d');
+
+        new Chart(yyy, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Bitcoin Price Index (USD)',
+                    data: data,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Date'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Price (USD)'
+                        }
+                    }
+                }
+            }
+        });
+
+        // creating doughnut graph
+        const zzz = document.getElementById('herChart').getContext('2d');
+
+        new Chart(zzz, {
+            type: 'polarArea',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Bitcoin Price Index (USD)',
+                    data: data,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Date'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Price (USD)'
+                        }
+                    }
+                }
+            }
+        });
 
 
     })

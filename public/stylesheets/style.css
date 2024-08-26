@@ -10,5 +10,6 @@ a {
 /* Centers the text within the element */
 .center-text {
   text-align: center; /* Aligns text to the center within the element */
-  margin: 0 auto; /* Centers the element itself (for block elements) */
+  margin: 20px; /* Centers the element itself (for block elements) */
+  
 }
