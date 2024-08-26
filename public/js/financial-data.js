@@ -27,15 +27,6 @@ function setMaxDate() {
 // Call the function to set the date limits
 setMaxDate();
 
-// Display a message to inform users about the data availability
-function displayInfoMessage() {
-    const infoMessage = document.createElement('p');
-    infoMessage.textContent = 'Only USD data within the past month is available.';
-    document.body.insertBefore(infoMessage, document.getElementById('myChart').parentElement);
-}
-
-displayInfoMessage();
-
 // Define the initial URL to get data
 const apiUrl = "http://api.coindesk.com/v1/bpi/historical/close.json";
 
@@ -45,48 +36,54 @@ let lineChartInstance;
 // Cache for storing the initial data
 let cachedData = null;
 
+// Function to display max and min values
+function displayMaxMin(data) {
+    const prices = Object.values(data);
+    const maxPrice = Math.max(...prices);
+    const minPrice = Math.min(...prices);
+
+    document.getElementById('maxPrice').textContent = `Max Price: ${maxPrice}`;
+    document.getElementById('minPrice').textContent = `Min Price: ${minPrice}`;
+}
+
 // Function to update the chart with new data
 function updateChart() {
-    // Get the selected start date, end date, and currency
     const startDate = document.getElementById('startDate').value;
     const endDate = document.getElementById('endDate').value;
     const currency = document.getElementById('currency').value || 'USD';
 
-    // Validate that both start and end dates are selected
     if (startDate && endDate) {
-        // Check if endDate is after startDate
         if (new Date(startDate) > new Date(endDate)) {
             alert("End date must be after start date.");
             return;
         }
 
-        // If cached data exists, use it
         if (cachedData && currency === 'USD') {
             console.log("Using cached data for USD");
             const filteredData = filterDataByDate(cachedData, startDate, endDate);
-            const labels = Object.keys(filteredData); // array of dates
-            const data = Object.values(filteredData); // array of prices
+            const labels = Object.keys(filteredData);
+            const data = Object.values(filteredData);
             updateLineChart(labels, data, currency);
+            displayMaxMin(filteredData);
         } else {
-            // Construct the API URL with the selected parameters
             const fullUrl = `${apiUrl}?start=${startDate}&end=${endDate}&currency=${currency}`;
 
             console.log("Fetching new data from API");
             console.log("Constructed API URL:", fullUrl);
 
-            // Fetch data using Axios
             axios.get(fullUrl)
                 .then(response => {
                     console.log("API Response Data", response.data);
 
                     if (currency === 'USD') {
-                        cachedData = response.data.bpi; // Cache the data for future use
+                        cachedData = response.data.bpi;
                     }
 
-                    const labels = Object.keys(response.data.bpi); // array of dates
-                    const data = Object.values(response.data.bpi); // array of prices
+                    const labels = Object.keys(response.data.bpi);
+                    const data = Object.values(response.data.bpi);
 
                     updateLineChart(labels, data, currency);
+                    displayMaxMin(response.data.bpi);
                 })
                 .catch(error => {
                     console.error("Error fetching data", error);

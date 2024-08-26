@@ -14,14 +14,15 @@
     <option value="USD">USD</option>
     <option value="EUR">EUR</option>
   </select>
-
-  <!-- Information message about data availability -->
-  <p class="info-message">
-    * Only data within the past 1 month is available in USD.
-  </p>
 </div>
 
-<!-- Canvas element for rendering the chart -->
+<!-- Container to display max and min values -->
+<div id="maxMinContainer">
+    <p id="maxPrice">Max Price: N/A</p>
+    <p id="minPrice">Min Price: N/A</p>
+</div>
+
+<!-- Canvas element to draw the chart -->
 <p class="center-text">
   <canvas id="myChart" width="400" height="200"></canvas>
 </p>
@@ -30,6 +31,9 @@
 <p class="center-text">
   <small>
     Data provided by
-    <a href="https://www.coindesk.com/price/bitcoin" target="_blank">CoinDesk</a>. Powered by CoinDesk.
+    <a
+      href="https://www.coindesk.com/price/bitcoin"
+      target="_blank"
+    >CoinDesk</a>. Powered by CoinDesk.
   </small>
 </p>
